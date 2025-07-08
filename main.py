@@ -12,10 +12,11 @@ while True:
     guess = guess_number()
 
     if guess > 100:
-        print("Die gegeben Zahl ist zu groß! Versuchen sie es mit einer Zahl zwischen 0 und 100")
+        print("Die gegebene Zahl ist zu groß! Versuchen sie es mit einer Zahl zwischen 0 und 100")
+        break
     elif guess < 0:
-        print("Die gegeben Zahl ist zu klein! Versuchen sie es mit einer Zahl zwischen 0 und 100")
-        continue
+        print("Die gegebene Zahl ist zu klein! Versuchen sie es mit einer Zahl zwischen 0 und 100")
+        break
 
     if guess == randomnumber:
         print("Du hast die Zahl korrekt erraten")
@@ -23,7 +24,7 @@ while True:
     elif abs(guess-randomnumber) <= 5:
         #Die Anzahl der Versuche wird um eins hochgesetzt
         amount_of_guesses = amount_of_guesses + 1
-        print(f"Knapp daneben ist auch vorbei, du bekommst aber einen {amount_of_guesses}. Versuch! Die Zahl war: {randomnumber}")
+        print(f"Knapp daneben ist auch vorbei, du bekommst aber einen {amount_of_guesses}. Versuch!")
     else:
         print(f"Das ist falsch, die Zahl war {randomnumber}")
         break
