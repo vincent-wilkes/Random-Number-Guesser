@@ -1,27 +1,32 @@
 import random
 
-def guess_number():
-    return int(input("Errate die Zahl zwischen 0 und 100: "))
+user_input = input("Gib den Zahlenbereich als zwei Zahlen ein, z.B. '10,50' oder '10:50': ")
+
+#Jetzt wird der User Input mit gängigen Seperatoren aufgeteilt und dann in eine sortierte Liste aus Integern gestellt
+for Sep in [',', ';', ':', '-', '.', ' ', '/']:
+    if Sep in user_input:
+        numberrange = sorted(map(int, user_input.split(Sep)))
+        break
+else:
+    raise ValueError("Bitte gibt zwei Zahlen mit einem Trennzeichen wie ',' oder ':' ein")
 
 #Eine Zufalls-Zahl wird generiert
-randomnumber = random.randint(0, 100)
-#Die Anzahl der Versuche wird gezählt um ggf. diese zu printen
+randomnumber = random.randint( numberrange[0], numberrange[1])
 amount_of_guesses = 1
+relative_accuracy = abs(numberrange[0] - numberrange[1]) / 20
 
 while True:
-    guess = guess_number()
+    guess = int(input(f"Errate die Zahl zwischen {numberrange[0]} und {numberrange[1]}: "))
 
-    if guess > 100:
-        print("Die gegebene Zahl ist zu groß! Versuchen sie es mit einer Zahl zwischen 0 und 100")
-        break
-    elif guess < 0:
-        print("Die gegebene Zahl ist zu klein! Versuchen sie es mit einer Zahl zwischen 0 und 100")
-        break
+    if guess < numberrange[0]:
+        raise ValueError(f"Die gegebene Zahl ist zu klein! Versuchen sie es mit einer Zahl zwischen {numberrange[0]} und {numberrange[1]}")
+    elif guess > numberrange[1]:
+        raise ValueError(f"Die gegebene Zahl ist zu groß! Versuchen sie es mit einer Zahl zwischen {numberrange[0]} und {numberrange[1]}")
 
     if guess == randomnumber:
-        print("Du hast die Zahl korrekt erraten")
+        print("Herzliche Glückwunsch, du hast die Zahl korrekt erraten!")
         break
-    elif abs(guess-randomnumber) <= 5:
+    elif abs(guess-randomnumber) <= relative_accuracy:
         #Die Anzahl der Versuche wird um eins hochgesetzt
         amount_of_guesses = amount_of_guesses + 1
         print(f"Knapp daneben ist auch vorbei, du bekommst aber einen {amount_of_guesses}. Versuch!")
