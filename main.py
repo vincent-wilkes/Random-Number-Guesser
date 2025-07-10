@@ -10,7 +10,7 @@ for Sep in [',', ';', ':', '-', '.', ' ', '/']:
 else:
     raise ValueError("Bitte gibt zwei Zahlen mit einem Trennzeichen wie ',' oder ':' ein.")
 
-rangesize = abs(numberrange[0] - numberrange[1])
+rangesize = numberrange[1] - numberrange[0]
 
 if rangesize <= 20:
     raise ValueError("Das ist ein wenig zu einfach, versuche es mit einem Zahlenraum der größer als 20 ist.")
@@ -34,7 +34,7 @@ while True:
     elif abs(guess-randomnumber) <= relative_accuracy:
         #Die Anzahl der Versuche wird um eins hochgesetzt
         amount_of_guesses = amount_of_guesses + 1
-        print(f"Knapp daneben ist auch vorbei, du bekommst aber einen {amount_of_guesses}. Versuch!")
+        print(f"Knapp daneben ist auch vorbei, du bekommst aber einen {amount_of_guesses}. Versuch!")  
     else:
         print(f"Das ist falsch, die Zahl war {randomnumber}.")
         break
